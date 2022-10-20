@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Book Recommender System</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .text-white {
+      color: white;
+    }
+    .td{
+      text-decoration:none;
+      color: white;
+      font-size: 18px;
+    }
+    .td:hover{
+      color: orange;
+    }
+    .imgsize{
+      height: 180px;
+      width: 140px;
+    }
+    .bookname{
+      font-size: 15px;
+      font-weight:400;
+    }
+    .author{
+      font-weight: 500;
+      color: #b8b8b8;
+    }
+    .logo{
+      font-size: 25px;
+      color: white;
+      margin-left: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .logo:hover{
+      color: orange;
+    }
+  </style>
+  <body style="background-color: #000000">
+    <nav class="navbar" style="background-color: #181818">
+
+      <a href="/" class="logo">
+       Book Recommender
+      </a>
+      <div class="d-flex p-2">
+        <div class="mx-2"><a href='/' class="td">Popular</a></div>
+        <div class="mx-2"><a href='/recommended' class="td">Recommend</a></div>
+        <div class="mx-2"><a href='/' class="td">Home</a></div>
+      </div>
+    </nav>
+    <img src="" alt="">
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-white" style="font-size: 40px">Recommended Books</h1>
+            <form action='/recommend_books' method="post">
+                <!-- this userinput will go to recommed_books function -->
+                <input name="userinput" type="text" class="form-control" required> <br>
+                <p class="text-white">(* Write correct book name)</p>
+                <input type="submit" class="btn btn-lg btn-warning">
+            </form>
+            
+        </div>
+
+        {% if data %} 
+        <!-- if there is data then only show the below div -->
+
+        {% for i in data %}
+
+        <div class="col-md-3" style="margin-top: 50px">
+          <!-- 3col ek book k3 liye  so 4 books in a row -->
+          <div style="background-color: #222222" class="py-3 px-2">
+            <div class="text-center">
+              <img
+                src="{{i[2]}}"
+                alt=""
+                class="card-img-top imgsize"
+                
+              />
+              <div class="text-white bookname mt-1">{{i[0]}}</div>
+              <div class="author">{{i[1]}}</div>
+      
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+        
+        {% endif %}
+       
+       
+   
+      </div>
+    </div>
+  </body>
+</html>
